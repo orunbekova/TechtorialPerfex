@@ -12,8 +12,7 @@
 @smoke @regression
 
   Feature: Testing the functionality of Techtorial Perfex login page
-    Background:Navigation to the website
-      Given User navigates to 'https://techtorialperfex.com/perfexcrm/admin/authentication'
+
 
     Scenario:Happy Path Login Functionality(Positive)
       Given User validates the title is 'Techtorial CRM - Login' from LoginPage
