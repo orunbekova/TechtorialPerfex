@@ -39,5 +39,4 @@ public class LoginSteps {
         Assert.assertEquals(dashboardTitle,driver.getTitle());
     }
 
-
 }
