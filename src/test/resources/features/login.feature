@@ -13,10 +13,12 @@
 
   Feature: Testing the functionality of Techtorial Perfex login page
 
+Background:
+  Given User navigates to 'employee' login page
 
     Scenario:Happy Path Login Functionality(Positive)
       Given User validates the title is 'Techtorial CRM - Login' from LoginPage
       And User validates the log_in is visible on the page
-      When User provides correct employee email and password to the loginPage
+      When User provides 'employee' login and password to the loginPage
       Then User validates the title 'Dashboard' from MainPage
 
