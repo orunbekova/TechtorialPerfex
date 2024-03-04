@@ -56,10 +56,14 @@ public LoginPage(WebDriver driver)
         }
 
 
+
     }
 
     public boolean isLoginVisible(){
 
         return loginButton.isDisplayed();
     }
+
+
+
 }
