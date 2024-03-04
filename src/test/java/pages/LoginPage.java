@@ -19,6 +19,7 @@ public LoginPage(WebDriver driver){
     WebElement loginButton;
 
 
+
     public void login(String username,String password){
        email.sendKeys(username);
        this.password.sendKeys(password);
@@ -30,4 +31,7 @@ public LoginPage(WebDriver driver){
 
         return loginButton.isDisplayed();
     }
+
+
+
 }
