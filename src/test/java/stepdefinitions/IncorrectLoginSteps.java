@@ -5,15 +5,18 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
-import utils.ConfigReader;
+import pages.IncorrectLoginPage;
 import utils.DriverHelper;
 
-public class LoginSteps {
+public class IncorrectLoginSteps {
 
     WebDriver driver= DriverHelper.getDriver();
-    LoginPage loginPage=new LoginPage(driver);
+    IncorrectLoginPage incorrectLoginPage = new IncorrectLoginPage(driver);
 
+    @Given("User navigate to Url {string}")
+    public void user_navigate_to_url(String Url) {
+  driver.get(Url);
+    }
 
     @Given("User validates the title is {string} from LoginPage")
     public void user_validates_the_title_is_from_login_page(String expectedTitle) {
@@ -23,22 +26,26 @@ public class LoginSteps {
     }
     @Given("User validates the log_in is visible on the page")
     public void user_validates_the_log_in_is_visible_on_the_page() {
-        Assert.assertTrue(loginPage.isLoginVisible());
+        Assert.assertTrue(incorrectLoginPage.isLoginVisible());
     }
-    @When("User provides correct employee email and password to the loginPage")
-    public void user_provides_correct_employee_email_and_password_to_the_login_page() {
-       loginPage.login(ConfigReader.readProperty("test_username"),
-                ConfigReader.readProperty("test_password"));
 
-    }
     @Then("User validates the title {string} from MainPage")
     public void user_validates_the_title_from_main_page(String dashboardTitle) {
         Assert.assertEquals(dashboardTitle,driver.getTitle());
     }
 
+    @When("User provides {string} and {string} to the loginPage")
+    public void user_provides_and_to_the_login_page(String IncorrectEmail, String IncorrectPassWord) {
 
+        incorrectLoginPage.IncorrectLogin(IncorrectEmail,IncorrectPassWord);
+
+    }
+
+    @Then("User validates {string} and {string} from loginPage")
+    public void user_validates_and_from_login_page(String ExpectedErrorMessage, String ExpectedColor) {
+incorrectLoginPage.errorMessageIsDisplayed(ExpectedErrorMessage,ExpectedColor);
 
 
     }
 
-
+}
