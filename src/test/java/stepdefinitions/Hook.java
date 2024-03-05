@@ -10,14 +10,15 @@ import utils.DriverHelper;
 
 public class Hook {
     public WebDriver driver;
-    @Before//it must be imported from io cucumber not junit
-    public void setup() {
-        driver= DriverHelper.getDriver();
-        driver.get(ConfigReader.readProperty("test_url"));
-    }
+//    @Before//it must be imported from io cucumber not junit
+//    public void setup() {
+//        driver= DriverHelper.getDriver();
+//        driver.get(ConfigReader.readProperty("test_url"));
+//    }
     @After
     public void tearDown(Scenario scenario){
      BrowserUtils.getScreenShotWithCucumber(driver,scenario);
+     driver= DriverHelper.getDriver();
      driver.quit();
     }
 }

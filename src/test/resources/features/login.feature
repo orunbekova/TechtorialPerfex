@@ -13,10 +13,20 @@
 
   Feature: Testing the functionality of Techtorial Perfex login page
 
+Background:
+  Given User navigates to 'employee' login page
 
     Scenario:Happy Path Login Functionality(Positive)
       Given User validates the title is 'Techtorial CRM - Login' from LoginPage
       And User validates the log_in is visible on the page
-      When User provides correct employee email and password to the loginPage
+      When User provides 'employee' login and password to the loginPage
       Then User validates the title 'Dashboard' from MainPage
+
+
+    Scenario: Negative Login Functionality(Incorrect email and password)
+      Given User navigate to Url 'https://techtorialperfex.com/perfexcrm/admin/authentication'
+     Given User validates the title is 'Techtorial CRM - Login' from LoginPage
+      And User validates the log_in is visible on the page
+      When User provides 'lia@example.com' and '123456' to the loginPage
+      Then User validates 'Invalid email or password' and 'rgba(211, 0, 0, 1)' from loginPage
 

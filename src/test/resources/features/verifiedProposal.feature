@@ -7,6 +7,6 @@ Feature: Testing the Proposals functionality
     When User click Sales Module from left side navigation menu
     And User Click Proposals module
 
-  Scenario: New Proposal button background color
-    Then User validates that there a button New Proposal is visible
-    And User validates that New Proposal button background-color is 'rgba(37, 99, 235, 1)'
+  Scenario: Verify approved proposal
+    Given User set Table length "All" from drop down menu
+    Then User validates "Accepted" in Proposal status
