@@ -7,9 +7,8 @@ Feature: Testing proposal acceptance functionality
     When  User clicks on the "Proposals" menu in the top navigation menu
     Then User should verify that the proposal it was created in TC5 is in the list with
       | proposalName | Name_Proposal_Test_TC5 |
-      | totalPrice   | $300.30                    |
+      | totalPrice   | $300.30                |
     And User gets the created proposal ID from the Proposal# column and save it as proposal_id
-
 
     When User clicks on the created proposal "Name_Proposal_Test_TC5" from the table
     Then User should verify that the proposal_id matches the value in the h4 tag on the new page
