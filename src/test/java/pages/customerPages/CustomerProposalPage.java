@@ -37,7 +37,7 @@ public class CustomerProposalPage {
             Assert.assertEquals(BrowserUtils.getText(productList.get(i)),expectedProductList.get(i));
         }
     }
-    public void validatecceptButton() {
+    public void validateAcceptButton() {
         Assert.assertTrue(acceptButton.isDisplayed());
     }
     public void clickAcceptButton(){

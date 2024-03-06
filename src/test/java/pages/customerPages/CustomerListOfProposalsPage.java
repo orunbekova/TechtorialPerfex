@@ -49,11 +49,11 @@ public class CustomerListOfProposalsPage {
         return false;
     }
 
-    public void clickCreatedProposal (String createdProposal) throws InterruptedException {
+    public void clickCreatedProposal (String createdProposal)  {
         for (WebElement each : customerListOfProposals) {
             if (BrowserUtils.getText(each).equals(createdProposal)) {
                 each.click();
-                Thread.sleep(2000);
+                //Thread.sleep(2000);
                 break;
             }
         }
