@@ -17,10 +17,16 @@ import java.util.Map;
 
 public class ProposalAcceptanceSteps {
     WebDriver driver = DriverHelper.getDriver();
+    LoginSteps login = new LoginSteps();
     CustomerMainPage mainPage = new CustomerMainPage(driver);
     CustomerListOfProposalsPage listOfProposals = new CustomerListOfProposalsPage(driver);
     CustomerProposalPage proposalPage = new CustomerProposalPage(driver);
     CustomerSignaturePage signaturePage = new CustomerSignaturePage(driver);
+    @When("User logs in with {string} credentials")
+    public void userLogsInWithCredentials(String credentials) {
+        login.user_provides_login_and_password_to_the_login_page(credentials);
+
+    }
 
     @Then("User should see the page title {string}")
     public void user_should_see_the_page_title(String expectedTitle) {

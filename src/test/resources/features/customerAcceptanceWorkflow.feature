@@ -2,6 +2,7 @@ Feature: Testing proposal acceptance functionality
 
   Scenario: Verify Proposal Acceptance Process
     Given User navigates to 'customer' login page
+    When User logs in with "customer" credentials
     * User should see the page title "Apple LLC"
 
     When  User clicks on the "Proposals" menu in the top navigation menu
