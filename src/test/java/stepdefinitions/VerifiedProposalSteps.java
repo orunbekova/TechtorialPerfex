@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.VerifiedProposal;
 import utils.DriverHelper;
@@ -23,6 +24,7 @@ public class VerifiedProposalSteps {
     public void user_validates_in_proposal_status(String status) {
         verifiedProposal.validateAcceptedStatus();
     }
+
 
 
 }
