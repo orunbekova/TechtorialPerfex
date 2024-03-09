@@ -1,0 +1,29 @@
+Index: src/test/java/stepdefinitions/IncorrectLoginSteps.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package stepdefinitions;\n\nimport io.cucumber.java.en.Given;\nimport io.cucumber.java.en.Then;\nimport io.cucumber.java.en.When;\nimport org.junit.Assert;\nimport org.openqa.selenium.WebDriver;\nimport pages.IncorrectLoginPage;\nimport utils.DriverHelper;\n\npublic class IncorrectLoginSteps {\n\n    WebDriver driver= DriverHelper.getDriver();\n    IncorrectLoginPage incorrectLoginPage = new IncorrectLoginPage(driver);\n\n    @Given(\"User navigate to Url {string}\")\n    public void user_navigate_to_url(String Url) {\n  driver.get(Url);\n    }\n//    @Given(\"User validates the title is {string} from LoginPage\")\n//    public void user_validates_the_title_is_from_login_page(String expectedTitle) {\n//        Assert.assertEquals(expectedTitle,driver.getTitle());\n//        System.out.println(driver.getTitle());\n\n\n\n//    @Given(\"User validates the log_in is visible on the page\")\n//    public void user_validates_the_log_in_is_visible_on_the_page() {\n//        Assert.assertTrue(incorrectLoginPage.isLoginVisible());\n//    }\n\n//    @Then(\"User validates the title {string} from MainPage\")\n//    public void user_validates_the_title_from_main_page(String dashboardTitle) {\n//        Assert.assertEquals(dashboardTitle,driver.getTitle());\n//    }\n\n    @When(\"User provides {string} and {string} to the loginPage\")\n    public void user_provides_and_to_the_login_page(String IncorrectEmail, String IncorrectPassWord) {\n\n        incorrectLoginPage.IncorrectLogin(IncorrectEmail,IncorrectPassWord);\n\n    }\n\n    @Then(\"User validates {string} and {string} from loginPage\")\n    public void user_validates_and_from_login_page(String ExpectedErrorMessage, String ExpectedColor) {\nincorrectLoginPage.errorMessageIsDisplayed(ExpectedErrorMessage,ExpectedColor);\n\n\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/stepdefinitions/IncorrectLoginSteps.java b/src/test/java/stepdefinitions/IncorrectLoginSteps.java
+--- a/src/test/java/stepdefinitions/IncorrectLoginSteps.java	(revision 71f424abe738f051b7a4370757c5b1c3c3c8dac1)
++++ b/src/test/java/stepdefinitions/IncorrectLoginSteps.java	(date 1709910524485)
+@@ -21,14 +21,14 @@
+ //    public void user_validates_the_title_is_from_login_page(String expectedTitle) {
+ //        Assert.assertEquals(expectedTitle,driver.getTitle());
+ //        System.out.println(driver.getTitle());
+-
+-
+-
++//
++//
++//
+ //    @Given("User validates the log_in is visible on the page")
+ //    public void user_validates_the_log_in_is_visible_on_the_page() {
+ //        Assert.assertTrue(incorrectLoginPage.isLoginVisible());
+ //    }
+-
++//
+ //    @Then("User validates the title {string} from MainPage")
+ //    public void user_validates_the_title_from_main_page(String dashboardTitle) {
+ //        Assert.assertEquals(dashboardTitle,driver.getTitle());
