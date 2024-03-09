@@ -61,6 +61,7 @@ public class DriverHelper {
                 case "chrome":
                     driver=new ChromeDriver();
                     break;
+
                 case "firefox":
                     driver=new FirefoxDriver();
                     break;
