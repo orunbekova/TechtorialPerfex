@@ -10,10 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import utils.ConfigReader;
 
 public class LoginPage {
-public LoginPage(WebDriver driver)
-{
-    PageFactory.initElements(driver,this);
-}
+    public LoginPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
     @FindBy(css = "#email")
     WebElement email;
@@ -23,8 +22,8 @@ public LoginPage(WebDriver driver)
     @FindBy(xpath = "//button[@type='submit']")
     WebElement loginButton;
 
-    public void userNavigatesToWebsite(String typeLogin,WebDriver driver){
-        switch (typeLogin){
+    public void userNavigatesToWebsite(String typeLogin, WebDriver driver) {
+        switch (typeLogin) {
 
             case "employee":
                 driver.get(ConfigReader.readProperty("employee_url"));
@@ -32,13 +31,16 @@ public LoginPage(WebDriver driver)
             case "customer":
                 driver.get(ConfigReader.readProperty("customer_url"));
                 break;
+            case "manager":
+                driver.get(ConfigReader.readProperty("manager_url"));
+                break;
 
             default:
                 System.out.println("Enter correct type of URL");
         }
     }
 
-    public void login(String typeLogin){
+    public void login(String typeLogin) {
         switch (typeLogin) {
             case "employee":
                 email.sendKeys(ConfigReader.readProperty("employee_username"));
@@ -50,20 +52,23 @@ public LoginPage(WebDriver driver)
                 password.sendKeys(ConfigReader.readProperty("customer_password"));
                 loginButton.click();
                 break;
+            case "manager":
+                email.sendKeys(ConfigReader.readProperty("manager_username"));
+                password.sendKeys(ConfigReader.readProperty("manager_password"));
+                loginButton.click();
+                break;
 
             default:
                 System.out.println("Enter correct type of login");
         }
 
 
-
     }
 
-    public boolean isLoginVisible(){
+    public boolean isLoginVisible() {
 
         return loginButton.isDisplayed();
     }
-
 
 
 }
