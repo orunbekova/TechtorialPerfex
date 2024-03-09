@@ -9,11 +9,10 @@ Feature: Invoice Management
     When User logs in with "customer" credentials
     * User should see the page title "Apple LLC"
 
-    When User goes to the "Invoices" menu from the top menu
+    When User clicks "Invoices" menu
     And User verifies that the page title is "Invoices"
-    And User verifies that the invoice created in TC 8 is received by the customer
-    Then User verifies that the status is labeled as "Unpaid" with red font
-
+    And User verifies that the invoice  "INV-000022" is received by the customer
+    Then User verifies that the status is labeled as "Unpaid" and background-color is 'rgba(22, 163, 74, 1)'
 
 
  # Login with valid credentials.
