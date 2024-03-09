@@ -12,7 +12,7 @@ Feature: Invoice Management
     When User clicks "Invoices" menu
     And User verifies that the page title is "Invoices"
     And User verifies that the invoice  "INV-000022" is received by the customer
-    Then User verifies that the status is labeled as "Unpaid" and background-color is 'rgba(22, 163, 74, 1)'
+    Then User verifies that the status is labeled as "Paid" and background-color is 'rgba(22, 163, 74, 1)'
 
 
  # Login with valid credentials.
