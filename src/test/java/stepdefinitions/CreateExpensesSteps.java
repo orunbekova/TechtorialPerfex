@@ -25,13 +25,17 @@ public class CreateExpensesSteps {
     }
 
     @When("User creates a new record with the following details:")
-    public void user_creates_a_new_record_with_the_following_details(DataTable dataTable) {
+    public void user_creates_a_new_record_with_the_following_details(DataTable dataTable) throws InterruptedException {
         Map<String, String> data = dataTable.asMap();
+        expensesPage.recordExpense(driver,data.get("Expense Name"),
+                data.get("Note"),data.get("Expense Category"),
+                data.get("Amount"),data.get("Customer"),data.get("Project"),data.get("Payment Mode"));
 
     }
 
-    @When("User scrolls down and select the {string} button")
-    public void user_scrolls_down_and_select_the_button(String string) {
+    @When("User scrolls down and select the Save button")
+    public void user_scrolls_down_and_select_the_save_button() {
+        expensesPage.save();
 
     }
 
@@ -41,7 +45,8 @@ public class CreateExpensesSteps {
     }
 
     @Then("User should find the created expense with the note {string}")
-    public void user_should_find_the_created_expense_with_the_note(String string) {
+    public void user_should_find_the_created_expense_with_the_note(String expectedNote) {
+        expensesPage.validateReceiptNote(expectedNote);
 
     }
 
