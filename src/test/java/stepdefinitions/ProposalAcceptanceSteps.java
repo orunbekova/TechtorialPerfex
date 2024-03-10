@@ -4,6 +4,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.customerPages.CustomerListOfProposalsPage;
 import pages.customerPages.CustomerMainPage;
@@ -11,6 +12,7 @@ import pages.customerPages.CustomerProposalPage;
 import pages.customerPages.CustomerSignaturePage;
 import utils.BrowserUtils;
 import utils.ConfigReader;
+import utils.DataHolder;
 import utils.DriverHelper;
 
 import java.util.Map;
@@ -46,9 +48,10 @@ public class ProposalAcceptanceSteps {
         listOfProposals.validateNameAndTotalPriceProposal(data.get("proposalName"), data.get("totalPrice"));
     }
 
-    @Then("User gets the created proposal ID from the Proposal# column and save it as proposal_id")
-    public void user_gets_the_created_proposal_id_from_the_proposal_column_and_save_it_as_proposal_id() {
+    @Then("User gets the {string} proposal ID from the Proposal# column and save it as proposal_id")
+    public void user_gets_the_proposal_id_from_the_proposal_column_and_save_it_as_proposal_id(String proposalName) {
 //unimplemented yet but working on it
+        DataHolder.getInstance().setProposalID(listOfProposals.getProposalId(proposalName));
     }
 
     @When("User clicks on the created proposal {string} from the table")
@@ -59,6 +62,7 @@ public class ProposalAcceptanceSteps {
     @Then("User should verify that the proposal_id matches the value in the h4 tag on the new page")
     public void user_should_verify_that_the_proposal_id_matches_the_value_in_the_h4_tag_on_the_new_page() {
 //unimplemented yet but working on it
+        Assert.assertEquals(DataHolder.getInstance().getProposalID(),proposalPage.getProposalID());
     }
 
     @Then("User should verify that the page title is {string}")

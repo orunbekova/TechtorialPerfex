@@ -19,10 +19,14 @@ public class CustomerListOfProposalsPage {
 
     @FindBy(className = "td-proposal-url-subject")
     List<WebElement> customerListOfProposals;
+    @FindBy(xpath="//tbody/tr/td[1]/a")
+    List<WebElement> listOfProposalsID;
     @FindBy(xpath = "//tbody/tr/td")
     List<WebElement> listOfAllElementsProposals;
     @FindBy(xpath = "//tbody/tr[1]/td[1]/a")
     WebElement proposal_ID;
+    @FindBy(xpath="//input[@type='search']")
+    WebElement searchButton;
 
 
     public void validateNameAndTotalPriceProposal(String expectedProposalName, String expectedTotalProposal) {
@@ -34,9 +38,13 @@ public class CustomerListOfProposalsPage {
             }
         }
     }
-    public String getProposalId () {
-        System.out.println(BrowserUtils.getText(proposal_ID));
-        return BrowserUtils.getText(proposal_ID);
+    public String getProposalId (String proposalName) {
+        for(int i=0;i<customerListOfProposals.size();i++){
+            if(BrowserUtils.getText(customerListOfProposals.get(i)).equals(proposalName)){
+                return BrowserUtils.getText(listOfProposalsID.get(i));
+            }
+        }
+        return null;
     }
 
 
@@ -50,13 +58,15 @@ public class CustomerListOfProposalsPage {
     }
 
     public void clickCreatedProposal (String createdProposal)  {
-        for (WebElement each : customerListOfProposals) {
-            if (BrowserUtils.getText(each).equals(createdProposal)) {
-                each.click();
-                //Thread.sleep(2000);
-                break;
-            }
-        }
+        searchButton.sendKeys(createdProposal);
+//        for (WebElement each : customerListOfProposals) {
+//            if (BrowserUtils.getText(each).equals(createdProposal)) {
+//                each.click();
+//                //Thread.sleep(2000);
+//                break;
+//            }
+//        }
+        customerListOfProposals.get(0).click();
     }
 
     //public static String proposal_id = BrowserUtils.getText(proposal_ID);

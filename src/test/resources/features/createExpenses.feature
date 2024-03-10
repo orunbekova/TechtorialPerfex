@@ -1,4 +1,6 @@
+@regression
 Feature: Expense Management
+
 
   Scenario: Recording an expense for a customer
     Given User navigates to 'manager' login page
