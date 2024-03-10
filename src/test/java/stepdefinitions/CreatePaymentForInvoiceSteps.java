@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.managerPages.InvoicesPage;
 import pages.managerPages.ManagerMainPage;
+import pages.managerPages.ManagerPaymentPage;
 import pages.managerPages.SelectedInvoicePage;
 import utils.DriverHelper;
 
@@ -14,6 +15,8 @@ public class CreatePaymentForInvoiceSteps {
     ManagerMainPage managerMainPage = new ManagerMainPage(driver);
     InvoicesPage invoicesPage = new InvoicesPage(driver);
     SelectedInvoicePage selectedInvoicePage = new SelectedInvoicePage(driver);
+
+    ManagerPaymentPage managerPaymentPage = new ManagerPaymentPage(driver);
 
 
     @Then("User clicks on the {string} module from the left side navigation menu")
@@ -66,6 +69,42 @@ public class CreatePaymentForInvoiceSteps {
     @And("User clicks the green {string} Save button")
     public void userClicksTheGreenSaveButton(String expectedColor) {
         selectedInvoicePage.clickGreenSaveButton(expectedColor);
+
+    }
+
+
+    @When("User searches for the invoice ID {string} created in TC8 payment page")
+    public void user_searches_for_the_invoice_id_created_in_tc8_payment_page(String invoiceId) {
+        // managerPaymentPage.searchInvoice(invoiceId);
+    }
+
+    @When("User selects the found invoice ID {string} from the Invoice# column in payment page")
+    public void user_selects_the_found_invoice_id_from_the_invoice_column_in_payment_page(String invoiceId) {
+        managerPaymentPage.searchAndClickInvoiceFromList(invoiceId);
+    }
+
+    @Then("User verifies that Payment button is disabled")
+    public void user_verifies_that_payment_button_is_disabled() {
+        selectedInvoicePage.validatePaymentButtonDisabled();
+    }
+
+    @Then("User verifies Paid label is displayed under Invoices tab in right panel")
+    public void user_verifies_paid_label_is_displayed_under_invoices_tab_in_right_panel() {
+        selectedInvoicePage.validatePaidLabel();
+    }
+
+    @Then("User verifies that a payment badge {string} added next to Payment tab")
+    public void user_verifies_that_a_payment_badge_added_next_to_payment_tab(String badgeNu) {
+        selectedInvoicePage.validateBadge(badgeNu);
+    }
+
+    @When("User clicks on the {string} on selected invoice")
+    public void user_clicks_on_the_on_selected_invoice(String paymentMode) {
+        selectedInvoicePage.clickPaymentRightSide();
+    }
+
+    @Then("verify payment mode is {string} and paid amount is {string}")
+    public void verify_payment_mode_is_and_paid_amount_is(String paymentMode, String amount) {
 
     }
 
