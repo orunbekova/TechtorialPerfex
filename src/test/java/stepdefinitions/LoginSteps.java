@@ -22,7 +22,6 @@ public class LoginSteps {
     @Given("User validates the title is {string} from LoginPage")
     public void user_validates_the_title_is_from_login_page(String expectedTitle) {
         Assert.assertEquals(expectedTitle,driver.getTitle());
-        System.out.println(driver.getTitle());
 
     }
     @Given("User validates the log_in is visible on the page")
@@ -37,8 +36,6 @@ public class LoginSteps {
     public void user_validates_the_title_from_main_page(String dashboardTitle) {
         Assert.assertEquals(dashboardTitle,driver.getTitle());
     }
-
-
 
 
     }
