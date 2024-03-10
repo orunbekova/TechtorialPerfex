@@ -13,3 +13,4 @@ Feature: Create a payment as manager for created invoice
     When User hovers over the account icon with a blank person image, it shows the name of the user "David Techtorial"
     Then User adds the user's first and last name from the account icon and "accepted payment" to the payment's Leave a note section
     And User clicks the green "rgba(34, 197, 94, 1)" Save button
+

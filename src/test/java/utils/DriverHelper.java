@@ -27,6 +27,7 @@ public class DriverHelper {
                 case "chrome":
                     driver=new ChromeDriver();
                     break;
+
 //                case "chrome":
 //                    String hubURL = "http://54.209.14.16:4444";
 //                    ChromeOptions options = new ChromeOptions();
@@ -36,6 +37,7 @@ public class DriverHelper {
 //                        throw new RuntimeException(e);
 //                    }
 //                    break;
+
                 case "firefox":
                     driver=new FirefoxDriver();
                     break;
