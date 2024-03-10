@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,9 +11,6 @@ public class IncorrectLoginPage {
     public IncorrectLoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
-
-
-
     @FindBy(css = "#email")
     WebElement email;
     @FindBy(css = "#password")
@@ -21,20 +19,18 @@ public class IncorrectLoginPage {
     @FindBy(xpath = "//button[@type='submit']")
     WebElement loginButton;
 
-    @FindBy(linkText = "Invalid email or password")
+    @FindBy(xpath = "//div[contains(text(),'Invalid email')] ")
     WebElement errorMessage;
 
-    public boolean isLoginVisible(){
-
-        return loginButton.isDisplayed();
-    }
     public void IncorrectLogin(String IncorrectEmail ,String IncorrectPassWord){
         email.sendKeys(IncorrectEmail);
         password.sendKeys(IncorrectPassWord);
         loginButton.click();
     }
 
-    public void errorMessageIsDisplayed(String ExpectedErrorMessage, String ExpectedColor){
-        errorMessage.isDisplayed();
+    public void errorMessageIsDisplayed(String expectedColorxpectedErrorMessage, String expectedColor){
+        Assert.assertTrue(errorMessage.isDisplayed());
+        Assert.assertEquals(errorMessage.getCssValue("color"),expectedColor);
+        Assert.assertEquals(errorMessage.getText(),expectedColorxpectedErrorMessage);
     }
 }

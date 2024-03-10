@@ -36,6 +36,7 @@ public class DriverHelper {
                         throw new RuntimeException(e);
                     }
                     break;
+
                 case "firefox":
                     driver=new FirefoxDriver();
                     break;
