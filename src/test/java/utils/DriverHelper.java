@@ -13,40 +13,6 @@ import java.time.Duration;
 
 public class DriverHelper {
 
-//    private static WebDriver driver;
-//    private DriverHelper(){}
-//    //I make my constructor private because I do not want anyone to create an object
-//    //and manipulate my driver from this class.
-//
-//    public static WebDriver getDriver(){
-//        if(driver==null|| ((RemoteWebDriver)driver).getSessionId()==null){
-//            String browser="chrome";
-//
-//            switch (browser){
-//
-//                case "chrome":
-//                    String hubURL = "http://54.88.171.18:4444";
-//                    ChromeOptions options = new ChromeOptions();
-//                    try {
-//                        driver = new RemoteWebDriver(new URL(hubURL),options);
-//                    } catch (MalformedURLException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                    break;
-//                case "firefox":
-//                    driver = new FirefoxDriver();
-//                    break;
-//                default:
-//                    ChromeOptions options1 = new ChromeOptions();
-//                    options1.addArguments("--remote-allow-origins=*");
-//                    driver = new ChromeDriver(options1);
-//                    break;
-//            }
-//            driver.manage().window().maximize();
-//            //   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        }
-//        return driver;
-//    }
 
     private static WebDriver driver;
     private DriverHelper(){}
@@ -58,18 +24,19 @@ public class DriverHelper {
 
             switch (browser){
 
-//                case "chrome":
-//                    driver=new ChromeDriver();
-//                    break;
-                case "chrome":
-                    String hubURL = "http://54.88.171.18:4444";
-                    ChromeOptions options = new ChromeOptions();
-                    try {
-                        driver = new RemoteWebDriver(new URL(hubURL),options);
-                    } catch (MalformedURLException e) {
-                        throw new RuntimeException(e);
+                // case "chrome":
+                //     driver=new ChromeDriver();
+                //     break;
+               case "chrome":
+                  String hubURL = "http://54.88.171.18:4444";
+                   ChromeOptions options = new ChromeOptions();
+                   try {
+                       driver = new RemoteWebDriver(new URL(hubURL),options);
+                   } catch (MalformedURLException e) {
+                       throw new RuntimeException(e);
                     }
                     break;
+
                 case "firefox":
                     driver=new FirefoxDriver();
                     break;
