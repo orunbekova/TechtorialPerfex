@@ -69,6 +69,4 @@ public class LoginPage {
 
         return loginButton.isDisplayed();
     }
-
-
 }

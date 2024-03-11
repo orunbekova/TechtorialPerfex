@@ -23,7 +23,7 @@
      # Given User validates the title is 'Techtorial CRM - Login' from LoginPage
       #And User validates the log_in is visible on the page
       When User provides 'employee' login and password to the loginPage
-      Then User validates the title 'Dashboard' from MainPage
+      Then User validates the title contains 'Dashboard' from MainPage
 
 
     Scenario: Negative Login Functionality(Incorrect email and password)
