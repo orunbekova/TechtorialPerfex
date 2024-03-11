@@ -64,6 +64,4 @@ public LoginPage(WebDriver driver)
         return loginButton.isDisplayed();
     }
 
-
-
 }

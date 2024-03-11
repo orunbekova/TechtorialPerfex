@@ -20,8 +20,11 @@ public class InvoiceVerificationPage {
     @FindBy(xpath = "//a[@class='invoice-number']")
     List<WebElement> listOfInvoices;
 
-    @FindBy(xpath = "//*[@id=\"DataTables_Table_0\"]/tbody/tr[2]/td/span")
+    @FindBy(xpath = "//span[contains(text(),'Unpaid')]")
     WebElement invoiceStatus;
+
+//    @FindBy(xpath = "//a[contains(text(),'INV-000023')]")
+//    WebElement invoiceNumber;
 
     public void clickInvoice() {
         invoiceButton.click();
@@ -30,6 +33,7 @@ public class InvoiceVerificationPage {
     public boolean isInvoiceReceived(String invoiceNumber) {
         for (WebElement invoice : listOfInvoices) {
             if (invoice.getText().equals(invoiceNumber)) {
+                invoice.click();
                 return true;
             }
         }
