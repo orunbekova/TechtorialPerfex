@@ -24,6 +24,8 @@ public class CustomerProposalPage {
     WebElement acceptButton;
     @FindBy(xpath="//span[@class='label label-success tw-ml-4']")
     WebElement acceptedStatus;
+    @FindBy(xpath = "//a[contains(text(),'Back to portal')]")
+    WebElement backToPortalButton;
     public String getProposalID(){
         System.out.println(BrowserUtils.getText(proposalID));
         return BrowserUtils.getText(proposalID).split("\\s+")[1];
@@ -40,13 +42,18 @@ public class CustomerProposalPage {
     public void validateAcceptButton() {
         Assert.assertTrue(acceptButton.isDisplayed());
     }
-    public void clickAcceptButton(){
+    public void clickAcceptButton() throws InterruptedException {
         acceptButton.click();
+        Thread.sleep(1000);
 
     }
     public void validateAcceptedTextAndColor(String expectedText, String expectedColor){
         Assert.assertEquals(BrowserUtils.getText(acceptedStatus), expectedText);
         Assert.assertEquals(acceptedStatus.getCssValue("background-color"),expectedColor);
+    }
+    public void backToPortal() throws InterruptedException {
+        backToPortalButton.click();
+        Thread.sleep(500);
     }
 
 }

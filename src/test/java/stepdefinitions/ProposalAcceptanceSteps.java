@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,7 +20,7 @@ public class ProposalAcceptanceSteps {
     WebDriver driver = DriverHelper.getDriver();
     LoginSteps login = new LoginSteps();
     CustomerMainPage mainPage = new CustomerMainPage(driver);
-    CustomerListOfProposalsPage listOfProposals = new CustomerListOfProposalsPage(driver);
+    CustomerListOfProposalsPage customerListOfProposals = new CustomerListOfProposalsPage(driver);
     CustomerProposalPage proposalPage = new CustomerProposalPage(driver);
     CustomerSignaturePage signaturePage = new CustomerSignaturePage(driver);
     @When("User logs in with {string} credentials")
@@ -42,8 +43,8 @@ public class ProposalAcceptanceSteps {
     @Then("User should verify that the proposal it was created in TC5 is in the list with")
     public void user_should_verify_that_the_proposal_it_was_created_in_tc5_is_in_the_list_with(DataTable dataTable) {
         Map<String, String> data = dataTable.asMap();
-        listOfProposals.checkForProposal(data.get("proposalName"));
-        listOfProposals.validateNameAndTotalPriceProposal(data.get("proposalName"), data.get("totalPrice"));
+        customerListOfProposals.checkForProposal(data.get("proposalName"));
+        customerListOfProposals.validateNameAndTotalPriceProposal(data.get("proposalName"), data.get("totalPrice"));
     }
 
     @Then("User gets the created proposal ID from the Proposal# column and save it as proposal_id")
@@ -53,7 +54,7 @@ public class ProposalAcceptanceSteps {
 
     @When("User clicks on the created proposal {string} from the table")
     public void user_clicks_on_the_created_proposal_from_the_table(String proposal) {
-        listOfProposals.clickCreatedProposal(proposal);
+        customerListOfProposals.clickCreatedProposal(proposal);
     }
 
     @Then("User should verify that the proposal_id matches the value in the h4 tag on the new page")
@@ -77,7 +78,7 @@ public class ProposalAcceptanceSteps {
     }
 
     @When("User clicks the Accept button")
-    public void user_clicks_the_accept_button() {
+    public void user_clicks_the_accept_button() throws InterruptedException {
         proposalPage.clickAcceptButton();
     }
 
@@ -108,4 +109,15 @@ public class ProposalAcceptanceSteps {
 
 
     }
+    @And("User click back to Portal")
+    public void user_click_back_to_portal() throws InterruptedException {
+        proposalPage.backToPortal();
+    }
+    @When("User Logs Out as a customer")
+    public void user_logs_out_as_a_customer() throws InterruptedException {
+
+        customerListOfProposals.customerLogout();
+    }
+
+
 }

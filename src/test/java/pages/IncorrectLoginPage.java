@@ -24,10 +24,7 @@ public class IncorrectLoginPage {
     @FindBy(linkText = "Invalid email or password")
     WebElement errorMessage;
 
-    public boolean isLoginVisible(){
 
-        return loginButton.isDisplayed();
-    }
     public void IncorrectLogin(String IncorrectEmail ,String IncorrectPassWord){
         email.sendKeys(IncorrectEmail);
         password.sendKeys(IncorrectPassWord);

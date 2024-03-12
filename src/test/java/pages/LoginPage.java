@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,6 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.BrowserUtils;
 import utils.ConfigReader;
 
 public class LoginPage {
@@ -22,6 +24,8 @@ public LoginPage(WebDriver driver)
 
     @FindBy(xpath = "//button[@type='submit']")
     WebElement loginButton;
+    @FindBy(xpath = "//div[@class='text-center alert alert-danger']")
+    WebElement errorMessage;
 
     public void userNavigatesToWebsite(String typeLogin,WebDriver driver){
         switch (typeLogin){
@@ -50,6 +54,11 @@ public LoginPage(WebDriver driver)
                 password.sendKeys(ConfigReader.readProperty("customer_password"));
                 loginButton.click();
                 break;
+            case "invalid":
+                email.sendKeys(ConfigReader.readProperty("invalid_username"));
+                password.sendKeys(ConfigReader.readProperty("invalid_password"));
+                loginButton.click();
+                break;
 
             default:
                 System.out.println("Enter correct type of login");
@@ -64,6 +73,16 @@ public LoginPage(WebDriver driver)
         return loginButton.isDisplayed();
     }
 
+    public void IncorrectLogin(String IncorrectEmail ,String IncorrectPassWord){
+        email.sendKeys(IncorrectEmail);
+        password.sendKeys(IncorrectPassWord);
+        loginButton.click();
+    }
 
+    public void errorMessageIsDisplayed(String ExpectedErrorMessage, String ExpectedColor){
+
+        Assert.assertEquals(BrowserUtils.getText(errorMessage),ExpectedErrorMessage);
+        Assert.assertEquals(errorMessage.getCssValue("color"),ExpectedColor);
+    }
 
 }
