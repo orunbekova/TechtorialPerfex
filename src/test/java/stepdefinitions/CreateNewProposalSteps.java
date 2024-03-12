@@ -33,8 +33,6 @@ public class CreateNewProposalSteps {
     public void find_created_proposal_and_verify_that_its_status_is(String status) {
         proposalsPage.verifyCreatedProposal(status);
         proposalsPage.recordProposalIDAndProposalName();
-        System.out.println(DataHolder.getInstance().getProposalName());
-        System.out.println(DataHolder.getInstance().getProposalID());
 
     }
 

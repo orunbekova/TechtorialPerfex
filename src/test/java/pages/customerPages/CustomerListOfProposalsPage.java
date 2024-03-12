@@ -20,13 +20,13 @@ public class CustomerListOfProposalsPage {
 
     @FindBy(className = "td-proposal-url-subject")
     List<WebElement> customerListOfProposals;
-    @FindBy(xpath="//tbody/tr/td[1]/a")
+    @FindBy(xpath = "//tbody/tr/td[1]/a")
     List<WebElement> listOfProposalsID;
     @FindBy(xpath = "//tbody/tr/td")
     List<WebElement> listOfAllElementsProposals;
     @FindBy(xpath = "//tbody/tr[1]/td[1]/a")
     WebElement proposal_ID;
-    @FindBy(xpath="//input[@type='search']")
+    @FindBy(xpath = "//input[@type='search']")
     WebElement searchButton;
 
 
@@ -38,16 +38,17 @@ public class CustomerListOfProposalsPage {
 //                break;
 //            }
 //        }
-        for(int i=0;i<listOfAllElementsProposals.size();i++){
-            if(BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getInstance().getProposalID())){
-                Assert.assertEquals(expectedValues.get(1),BrowserUtils.getText(listOfAllElementsProposals.get(i+1)));
-                Assert.assertEquals(expectedValues.get(2),BrowserUtils.getText(listOfAllElementsProposals.get(i+2)));
+        for (int i = 0; i < listOfAllElementsProposals.size(); i++) {
+            if (BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getProposalID())) {
+                Assert.assertEquals(expectedValues.get(1), BrowserUtils.getText(listOfAllElementsProposals.get(i + 1)));
+                Assert.assertEquals(expectedValues.get(2), BrowserUtils.getText(listOfAllElementsProposals.get(i + 2)));
             }
         }
     }
-    public String getProposalId () {
-        for(int i=0;i<listOfAllElementsProposals.size();i++){
-            if(BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getInstance().getProposalID())){
+
+    public String getProposalId() {
+        for (int i = 0; i < listOfAllElementsProposals.size(); i++) {
+            if (BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getProposalID())) {
                 return BrowserUtils.getText(listOfAllElementsProposals.get(i));
             }
         }
@@ -55,7 +56,7 @@ public class CustomerListOfProposalsPage {
     }
 
 
-    public boolean checkForProposal (String proposalName){
+    public boolean checkForProposal(String proposalName) {
         for (WebElement each : customerListOfProposals) {
             if (BrowserUtils.getText(each).equals(proposalName)) {
                 return true;
@@ -64,21 +65,14 @@ public class CustomerListOfProposalsPage {
         return false;
     }
 
-    public void clickCreatedProposal ()  {
-        //searchButton.sendKeys(DataHolder.getInstance().getProposalName());
-//        for (WebElement each : customerListOfProposals) {
-//            if (BrowserUtils.getText(each).equals(createdProposal)) {
-//                each.click();
-//                //Thread.sleep(2000);
-//                break;
-//            }
-//        }
-        //customerListOfProposals.get(0).click();
-        for(int i=0;i<listOfAllElementsProposals.size();i++){
-            if(BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getInstance().getProposalID())){
+    public void clickCreatedProposal() {
+
+        for (int i = 0; i < listOfAllElementsProposals.size(); i++) {
+            if (BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getProposalID())) {
                 listOfAllElementsProposals.get(i).click();
             }
-    }}
+        }
+    }
 
-    //public static String proposal_id = BrowserUtils.getText(proposal_ID);
+
 }

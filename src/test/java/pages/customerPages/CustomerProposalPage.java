@@ -25,7 +25,7 @@ public class CustomerProposalPage {
     @FindBy(xpath="//span[@class='label label-success tw-ml-4']")
     WebElement acceptedStatus;
     public String getProposalID(){
-        System.out.println(BrowserUtils.getText(proposalID));
+        //System.out.println(BrowserUtils.getText(proposalID));
         return BrowserUtils.getText(proposalID).split("\\s+")[1];
     }
     public void validatePageTitle(WebDriver driver, String expectedTitle){

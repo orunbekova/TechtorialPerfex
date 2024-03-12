@@ -2,8 +2,8 @@ package utils;
 
 public class DataHolder {
     private static DataHolder instance;
-    private String proposalID;
-    private String proposalName;
+    private static String proposalID;
+    private static String proposalName;
 
 
 
@@ -18,18 +18,18 @@ public class DataHolder {
         return instance;
     }
 
-    public String getProposalID() {
+    public static String getProposalID() {
         return proposalID;
     }
 
-    public void setProposalID(String proposalID) {
-        this.proposalID = proposalID;
+    public static void setProposalID(String proposalID1) {
+        proposalID = proposalID1;
     }
-    public String getProposalName() {
+    public static String getProposalName() {
         return proposalName;
     }
 
-    public void setProposalName(String proposalName) {
-        this.proposalName = proposalName;
+    public static  void setProposalName(String proposalName1) {
+        proposalName = proposalName1;
     }
 }

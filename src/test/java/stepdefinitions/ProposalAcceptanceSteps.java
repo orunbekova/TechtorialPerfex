@@ -44,29 +44,23 @@ public class ProposalAcceptanceSteps {
     @Then("User should verify that the proposal it was created in TC5 is in the list with")
     public void user_should_verify_that_the_proposal_it_was_created_in_tc5_is_in_the_list_with(DataTable dataTable) {
         Map<String, String> data = dataTable.asMap();
-        //data.get("proposalName")
-        //listOfProposals.checkForProposal(DataHolder.getInstance().getProposalName());
         listOfProposals.validateNameAndTotalPriceProposal(data.get("proposalName"), data.get("totalPrice"));
-        System.out.println(DataHolder.getInstance().getProposalID());
-        System.out.println(DataHolder.getInstance().getProposalName());
     }
 
-    @Then("User gets the {string} proposal ID from the Proposal# column and save it as proposal_id")
-    public void user_gets_the_proposal_id_from_the_proposal_column_and_save_it_as_proposal_id(String proposalName) {
-//unimplemented yet but working on it
-        DataHolder.getInstance().setProposalID(listOfProposals.getProposalId());
+    @Then("User gets the TPX5 proposal ID from the Proposal# column and save it as proposal_id")
+    public void user_gets_the_tpx5_proposal_id_from_the_proposal_column_and_save_it_as_proposal_id() {
 
+        DataHolder.setProposalID(listOfProposals.getProposalId());
     }
 
-    @When("User clicks on the created proposal {string} from the table")
-    public void user_clicks_on_the_created_proposal_from_the_table(String proposal) {
+    @When("User clicks on the created proposal on TPX5 from the table")
+    public void user_clicks_on_the_created_proposal_on_tpx5_from_the_table() {
         listOfProposals.clickCreatedProposal();
     }
 
     @Then("User should verify that the proposal_id matches the value in the h4 tag on the new page")
     public void user_should_verify_that_the_proposal_id_matches_the_value_in_the_h4_tag_on_the_new_page() {
-//unimplemented yet but working on it
-        Assert.assertEquals(DataHolder.getInstance().getProposalID(),proposalPage.getProposalID());
+        Assert.assertEquals(DataHolder.getProposalID(),proposalPage.getProposalID());
     }
 
     @Then("User should verify that the page title is {string}")
