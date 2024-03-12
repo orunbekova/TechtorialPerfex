@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
+import utils.DataHolder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,17 +32,23 @@ public class CustomerListOfProposalsPage {
 
     public void validateNameAndTotalPriceProposal(String expectedProposalName, String expectedTotalProposal) {
         List<String> expectedValues = Arrays.asList("", expectedProposalName, expectedTotalProposal, "", "", "");
-        for (int i=0;i<customerListOfProposals.size();i++) {
-            if (BrowserUtils.getText(customerListOfProposals.get(i)).equals(expectedProposalName)) {
-                Assert.assertEquals(BrowserUtils.getText(listOfAllElementsProposals.get(2*(3*i+1))), expectedValues.get(2));
-                break;
+//        for (int i=0;i<customerListOfProposals.size();i++) {
+//            if (BrowserUtils.getText(customerListOfProposals.get(i)).equals(expectedProposalName)) {
+//                Assert.assertEquals(expectedValues.get(2),BrowserUtils.getText(listOfAllElementsProposals.get(2*(3*i+1))));
+//                break;
+//            }
+//        }
+        for(int i=0;i<listOfAllElementsProposals.size();i++){
+            if(BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getInstance().getProposalID())){
+                Assert.assertEquals(expectedValues.get(1),BrowserUtils.getText(listOfAllElementsProposals.get(i+1)));
+                Assert.assertEquals(expectedValues.get(2),BrowserUtils.getText(listOfAllElementsProposals.get(i+2)));
             }
         }
     }
-    public String getProposalId (String proposalName) {
-        for(int i=0;i<customerListOfProposals.size();i++){
-            if(BrowserUtils.getText(customerListOfProposals.get(i)).equals(proposalName)){
-                return BrowserUtils.getText(listOfProposalsID.get(i));
+    public String getProposalId () {
+        for(int i=0;i<listOfAllElementsProposals.size();i++){
+            if(BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getInstance().getProposalID())){
+                return BrowserUtils.getText(listOfAllElementsProposals.get(i));
             }
         }
         return null;
@@ -57,8 +64,8 @@ public class CustomerListOfProposalsPage {
         return false;
     }
 
-    public void clickCreatedProposal (String createdProposal)  {
-        searchButton.sendKeys(createdProposal);
+    public void clickCreatedProposal ()  {
+        //searchButton.sendKeys(DataHolder.getInstance().getProposalName());
 //        for (WebElement each : customerListOfProposals) {
 //            if (BrowserUtils.getText(each).equals(createdProposal)) {
 //                each.click();
@@ -66,8 +73,12 @@ public class CustomerListOfProposalsPage {
 //                break;
 //            }
 //        }
-        customerListOfProposals.get(0).click();
-    }
+        //customerListOfProposals.get(0).click();
+        for(int i=0;i<listOfAllElementsProposals.size();i++){
+            if(BrowserUtils.getText(listOfAllElementsProposals.get(i)).equals(DataHolder.getInstance().getProposalID())){
+                listOfAllElementsProposals.get(i).click();
+            }
+    }}
 
     //public static String proposal_id = BrowserUtils.getText(proposal_ID);
 }

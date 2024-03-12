@@ -3,6 +3,9 @@ package utils;
 public class DataHolder {
     private static DataHolder instance;
     private String proposalID;
+    private String proposalName;
+
+
 
     private DataHolder() {
         // Private constructor to prevent instantiation
@@ -21,5 +24,12 @@ public class DataHolder {
 
     public void setProposalID(String proposalID) {
         this.proposalID = proposalID;
+    }
+    public String getProposalName() {
+        return proposalName;
+    }
+
+    public void setProposalName(String proposalName) {
+        this.proposalName = proposalName;
     }
 }

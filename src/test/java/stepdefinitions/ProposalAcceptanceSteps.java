@@ -44,19 +44,23 @@ public class ProposalAcceptanceSteps {
     @Then("User should verify that the proposal it was created in TC5 is in the list with")
     public void user_should_verify_that_the_proposal_it_was_created_in_tc5_is_in_the_list_with(DataTable dataTable) {
         Map<String, String> data = dataTable.asMap();
-        listOfProposals.checkForProposal(data.get("proposalName"));
+        //data.get("proposalName")
+        //listOfProposals.checkForProposal(DataHolder.getInstance().getProposalName());
         listOfProposals.validateNameAndTotalPriceProposal(data.get("proposalName"), data.get("totalPrice"));
+        System.out.println(DataHolder.getInstance().getProposalID());
+        System.out.println(DataHolder.getInstance().getProposalName());
     }
 
     @Then("User gets the {string} proposal ID from the Proposal# column and save it as proposal_id")
     public void user_gets_the_proposal_id_from_the_proposal_column_and_save_it_as_proposal_id(String proposalName) {
 //unimplemented yet but working on it
-        DataHolder.getInstance().setProposalID(listOfProposals.getProposalId(proposalName));
+        DataHolder.getInstance().setProposalID(listOfProposals.getProposalId());
+
     }
 
     @When("User clicks on the created proposal {string} from the table")
     public void user_clicks_on_the_created_proposal_from_the_table(String proposal) {
-        listOfProposals.clickCreatedProposal(proposal);
+        listOfProposals.clickCreatedProposal();
     }
 
     @Then("User should verify that the proposal_id matches the value in the h4 tag on the new page")
