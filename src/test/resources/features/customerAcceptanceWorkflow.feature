@@ -7,13 +7,12 @@ Feature: Testing proposal acceptance functionality
 
     When  User clicks on the "Proposals" menu in the top navigation menu
     Then User should verify that the proposal it was created in TC5 is in the list with
-      | proposalName | Name_Proposal_Test_TC5 |
+      | proposalName | Alpha_Proposal_Test_TC6 |
       | totalPrice   | $300.30                |
-    And User gets the created proposal ID from the Proposal# column and save it as proposal_id
-
-    When User clicks on the created proposal "Name_Proposal_Test_TC5" from the table
+    And User gets the "Alpha_Proposal_Test_TC6" proposal ID from the Proposal# column and save it as proposal_id
+    When User clicks on the created proposal "Alpha_Proposal_Test_TC6" from the table
     Then User should verify that the proposal_id matches the value in the h4 tag on the new page
-    And User should verify that the page title is "Name_Proposal_Test_TC5"
+    And User should verify that the page title is "Alpha_Proposal_Test_TC6"
     And User should verify that the first item in the table is "Asus Monitor" and that the second item in the table is "Ethernet Cable"
     And User should see an Accept button on the page
 

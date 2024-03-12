@@ -12,10 +12,9 @@ import utils.BrowserUtils;
 import utils.ConfigReader;
 
 public class LoginPage {
-public LoginPage(WebDriver driver)
-{
-    PageFactory.initElements(driver,this);
-}
+    public LoginPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
     @FindBy(css = "#email")
     WebElement email;
@@ -27,8 +26,8 @@ public LoginPage(WebDriver driver)
     @FindBy(xpath = "//div[@class='text-center alert alert-danger']")
     WebElement errorMessage;
 
-    public void userNavigatesToWebsite(String typeLogin,WebDriver driver){
-        switch (typeLogin){
+    public void userNavigatesToWebsite(String typeLogin, WebDriver driver) {
+        switch (typeLogin) {
 
             case "employee":
                 driver.get(ConfigReader.readProperty("employee_url"));
@@ -36,13 +35,16 @@ public LoginPage(WebDriver driver)
             case "customer":
                 driver.get(ConfigReader.readProperty("customer_url"));
                 break;
+            case "manager":
+                driver.get(ConfigReader.readProperty("manager_url"));
+                break;
 
             default:
                 System.out.println("Enter correct type of URL");
         }
     }
 
-    public void login(String typeLogin){
+    public void login(String typeLogin) {
         switch (typeLogin) {
             case "employee":
                 email.sendKeys(ConfigReader.readProperty("employee_username"));
@@ -54,9 +56,15 @@ public LoginPage(WebDriver driver)
                 password.sendKeys(ConfigReader.readProperty("customer_password"));
                 loginButton.click();
                 break;
+
             case "invalid":
                 email.sendKeys(ConfigReader.readProperty("invalid_username"));
                 password.sendKeys(ConfigReader.readProperty("invalid_password"));
+
+            case "manager":
+                email.sendKeys(ConfigReader.readProperty("manager_username"));
+                password.sendKeys(ConfigReader.readProperty("manager_password"));
+
                 loginButton.click();
                 break;
 
@@ -65,24 +73,21 @@ public LoginPage(WebDriver driver)
         }
 
 
-
     }
 
-    public boolean isLoginVisible(){
+    public boolean isLoginVisible() {
 
         return loginButton.isDisplayed();
     }
 
-    public void IncorrectLogin(String IncorrectEmail ,String IncorrectPassWord){
-        email.sendKeys(IncorrectEmail);
-        password.sendKeys(IncorrectPassWord);
-        loginButton.click();
-    }
+
+  
 
     public void errorMessageIsDisplayed(String ExpectedErrorMessage, String ExpectedColor){
 
         Assert.assertEquals(BrowserUtils.getText(errorMessage),ExpectedErrorMessage);
         Assert.assertEquals(errorMessage.getCssValue("color"),ExpectedColor);
     }
+
 
 }

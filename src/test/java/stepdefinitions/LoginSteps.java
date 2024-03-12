@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
-import utils.ConfigReader;
 import utils.DriverHelper;
 
 public class LoginSteps {
@@ -22,7 +21,6 @@ public class LoginSteps {
     @Given("User validates the title is {string} from LoginPage")
     public void user_validates_the_title_is_from_login_page(String expectedTitle) {
         Assert.assertEquals(expectedTitle,driver.getTitle());
-        System.out.println(driver.getTitle());
 
     }
     @Given("User validates the log_in is visible on the page")
@@ -33,6 +31,7 @@ public class LoginSteps {
     public void user_provides_login_and_password_to_the_login_page(String typeLogin) {
       loginPage.login(typeLogin);
     }
+
     @Then("User validates the title {string} from MainPage")
     public void user_validates_the_title_from_main_page(String dashboardTitle) {
         Assert.assertEquals(dashboardTitle,driver.getTitle());
@@ -50,6 +49,19 @@ public class LoginSteps {
 
     }
 
+
+    @Then("User validates the title contains {string} from MainPage")
+    public String user_validates_the_title_contains_from_main_page(String expectedTitle) {
+        String actualTitle = driver.getTitle();
+
+        if (actualTitle.contains(expectedTitle)) {
+            System.out.println("Title validation successful: " + actualTitle);
+            return actualTitle;
+        } else {
+            System.out.println("Title validation failed. Expected: " + expectedTitle + ", Actual: " + actualTitle);
+            return null;
+        }
     }
+}
 
 
