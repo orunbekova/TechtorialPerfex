@@ -25,8 +25,14 @@ public class CustomerListOfProposalsPage {
     List<WebElement> listOfAllElementsProposals;
     @FindBy(xpath = "//tbody/tr[1]/td[1]/a")
     WebElement proposal_ID;
+
+    @FindBy(xpath = "//li[@class='dropdown customers-nav-item-profile']")
+    WebElement customerProfileButton;
+    @FindBy(xpath = "//li[@class='dropdown customers-nav-item-profile open']//a[contains(text(),'Logout')]")
+    WebElement logoutButton;
     @FindBy(xpath="//input[@type='search']")
     WebElement searchButton;
+
 
 
     public void validateNameAndTotalPriceProposal(String expectedProposalName, String expectedTotalProposal) {
@@ -58,6 +64,20 @@ public class CustomerListOfProposalsPage {
     }
 
     public void clickCreatedProposal (String createdProposal)  {
+
+        for (WebElement each : customerListOfProposals) {
+            if (BrowserUtils.getText(each).equals(createdProposal)) {
+                each.click();
+                //Thread.sleep(2000);
+                break;
+            }
+        }
+    } public void customerLogout() throws InterruptedException {
+        customerProfileButton.click();
+        Thread.sleep(500);
+        logoutButton.click();
+        Thread.sleep(500);
+
         searchButton.sendKeys(createdProposal);
 //        for (WebElement each : customerListOfProposals) {
 //            if (BrowserUtils.getText(each).equals(createdProposal)) {
@@ -67,7 +87,9 @@ public class CustomerListOfProposalsPage {
 //            }
 //        }
         customerListOfProposals.get(0).click();
+
     }
+
 
     //public static String proposal_id = BrowserUtils.getText(proposal_ID);
 }

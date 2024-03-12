@@ -16,8 +16,8 @@ public class Hook {
 //        driver.get(ConfigReader.readProperty("test_url"));
 //    }
     @After
-    public void tearDown(Scenario scenario){
-     BrowserUtils.getScreenShotWithCucumber(driver,scenario);
+    public void tearDown(){
+//     BrowserUtils.getScreenShotWithCucumber(driver,scenario);
      driver= DriverHelper.getDriver();
      //driver.quit();
     }

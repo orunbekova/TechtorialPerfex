@@ -22,6 +22,7 @@ public class IncorrectLoginPage {
     @FindBy(xpath = "//div[contains(text(),'Invalid email')] ")
     WebElement errorMessage;
 
+
     public void IncorrectLogin(String IncorrectEmail ,String IncorrectPassWord){
         email.sendKeys(IncorrectEmail);
         password.sendKeys(IncorrectPassWord);

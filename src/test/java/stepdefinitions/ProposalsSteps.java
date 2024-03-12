@@ -33,5 +33,11 @@ public class ProposalsSteps {
     public void user_validates_that_new_proposal_button_background_color_is(String color) {
 
     }
+    @When("User clicks newProposal button")
+    public void user_clicks_new_proposal_button() {
+        proposalsPage.clickNewProposal();
+    }
+
+
 
 }

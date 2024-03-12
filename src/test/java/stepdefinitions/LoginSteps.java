@@ -32,6 +32,24 @@ public class LoginSteps {
       loginPage.login(typeLogin);
     }
 
+    @Then("User validates the title {string} from MainPage")
+    public void user_validates_the_title_from_main_page(String dashboardTitle) {
+        Assert.assertEquals(dashboardTitle,driver.getTitle());
+    }
+    @When("User provides {string} and {string} to the loginPage")
+    public void user_provides_and_to_the_login_page(String IncorrectEmail, String IncorrectPassWord) {
+
+        loginPage.IncorrectLogin(IncorrectEmail,IncorrectPassWord);
+
+    }
+
+    @Then("User validates {string} and {string} from loginPage")
+    public void user_validates_and_from_login_page(String ExpectedErrorMessage, String ExpectedColor) {
+        loginPage.errorMessageIsDisplayed(ExpectedErrorMessage, ExpectedColor);
+
+    }
+
+
     @Then("User validates the title contains {string} from MainPage")
     public String user_validates_the_title_contains_from_main_page(String expectedTitle) {
         String actualTitle = driver.getTitle();
