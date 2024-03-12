@@ -26,7 +26,7 @@ public class DriverHelper {
 
 
                case "chrome":
-                   String hubURL = "http://54.209.14.16:4444";
+                 String hubURL = "http://54.88.171.18:4444";
                    ChromeOptions options = new ChromeOptions();
                    try {
                        driver = new RemoteWebDriver(new URL(hubURL),options);
