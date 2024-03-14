@@ -15,6 +15,9 @@ public class DashboardPage {
     @FindBy(xpath = "//span[contains(text(),'Proposals')]")
     WebElement proposalsModule;
 
+    @FindBy(xpath = "//span[contains(text(),'Dashboard')]")
+    WebElement dashboardModule;
+
 
     public void salesClick(){
         salesModule.click();
@@ -22,5 +25,7 @@ public class DashboardPage {
     public void proposalsClick(){
         proposalsModule.click();
     }
+
+
 
 }

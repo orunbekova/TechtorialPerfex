@@ -15,10 +15,10 @@ public class Hook {
 //        driver= DriverHelper.getDriver();
 //        driver.get(ConfigReader.readProperty("test_url"));
 //    }
-    @After
-    public void tearDown(Scenario scenario){
-     BrowserUtils.getScreenShotWithCucumber(driver,scenario);
-     driver= DriverHelper.getDriver();
-     driver.quit();
-    }
+//    @After
+//    public void tearDown(Scenario scenario){
+//     BrowserUtils.getScreenShotWithCucumber(driver,scenario);
+//     driver= DriverHelper.getDriver();
+//     driver.quit();
+  //  }
 }
