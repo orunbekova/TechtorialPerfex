@@ -44,7 +44,6 @@ public class PerfexApiSteps {
     @Then("verify response {string} is {string}")
     public void verify_response_is(String jsonPath, String expectedValue) {
         String actualValue=response.jsonPath().getString(jsonPath);
-        // what is the json path that i need to provide to get the customer company name for ikea llc.
         Assert.assertEquals(actualValue, expectedValue);
     }
     @Then("verify api response is ordered by {string}")
@@ -52,5 +51,7 @@ public class PerfexApiSteps {
         List<String> names=response.jsonPath().getList(keyName);
 
     }
+
+
 }
 
