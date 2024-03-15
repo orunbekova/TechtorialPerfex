@@ -52,6 +52,15 @@ public class PerfexApiSteps {
 
     }
 
+    @Then("verify response {string} contains {string}")
+    public void verify_response_contains(String jsonPath, String expectedName) {
+        String actualName=response.jsonPath().getString(jsonPath);
+        Assert.assertTrue(actualName.contains(expectedName));
+        System.out.println(actualName);
+        System.out.println(expectedName);
+    }
+
+
 
 }
 
