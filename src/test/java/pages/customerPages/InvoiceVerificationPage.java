@@ -23,8 +23,6 @@ public class InvoiceVerificationPage {
     @FindBy(xpath = "//span[contains(text(),'Unpaid')]")
     WebElement invoiceStatus;
 
-//    @FindBy(xpath = "//a[contains(text(),'INV-000023')]")
-//    WebElement invoiceNumber;
 
     public void clickInvoice() {
         invoiceButton.click();
