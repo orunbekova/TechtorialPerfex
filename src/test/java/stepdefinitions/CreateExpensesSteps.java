@@ -54,4 +54,29 @@ public class CreateExpensesSteps {
     public void user_should_verify_that_the_created_by_record_has_the_same_name_as_the_user_s_first_and_last_name_displayed_on_the_account_icon_on_the_top_menu_when_hovered_over() {
 
     }
+
+    @When("hover over record category column")
+    public void hover_over_record_category_column() throws InterruptedException {
+        expensesPage.hoverOverCategoryItem();
+    }
+    @Then("verify is shows {string}")
+    public void verify_is_shows(String rowOption) {
+       expensesPage.verifyRowOptions(rowOption);
+    }
+    @When("selecet View option")
+    public void selecet_view_option() {
+        expensesPage.clickViewOption();
+    }
+    @Then("verify that new panel show up expenses detail")
+    public void verify_that_new_panel_show_up_expenses_detail() {
+       expensesPage.verifyNewPanelIsDisplayed();
+    }
+    @Then("verify new panel hide when you click >> icon")
+    public void verify_new_panel_hide_when_you_click_icon() {
+        expensesPage.verifyAfterToggleNewPanelHide();
+    }
+    @Then("verify it shows up back when you clcik yable togle button")
+    public void verify_it_shows_up_back_when_you_clcik_yable_togle_button() {
+        expensesPage.verifyLefttoggleOpenNewPanel();
+    }
 }
