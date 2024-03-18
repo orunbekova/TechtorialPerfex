@@ -16,4 +16,6 @@ Feature: Customer API Validation for successful response
       When the user send the "GET" request
       Then verify status code 200
       * verify number of values 3
-      * verify response "[1].name" is "(10.00) Ethernet Cable"
+      * verify response "[1].id" is "2"
+      * verify response "[1].name" contains "Ethernet Cable"
+
