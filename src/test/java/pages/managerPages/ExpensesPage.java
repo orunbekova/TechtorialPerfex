@@ -1,5 +1,7 @@
 package pages.managerPages;
 
+
+import org.apache.commons.exec.DaemonExecutor;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,11 +12,13 @@ import utils.BrowserUtils;
 
 import java.util.List;
 
+import static utils.DriverHelper.driver;
+
 public class ExpensesPage {
     public ExpensesPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
-
+    Actions actions= new Actions(driver);
     @FindBy(linkText = "Record Expense")
     WebElement recordExpenseButton;
     @FindBy(id = "expense_name")
@@ -41,14 +45,47 @@ public class ExpensesPage {
 
     @FindBy(xpath = "//select[@id='paymentmode']")
     WebElement paymentMode;
-    @FindBy(xpath="//form[@id='expense-form']/div[1]/div/div/div[11]/button")
+    @FindBy(xpath = "//form[@id='expense-form']/div[1]/div/div/div[11]/button")
     WebElement save;
-    @FindBy(xpath="//p[@class='text-muted mbot15']")
+    @FindBy(xpath = "//p[@class='text-muted mbot15']")
     WebElement noteReceipt;
-    @FindBy(xpath="//h4[@id='expenserCreator']/a")
+    @FindBy(xpath = "//h4[@id='expenserCreator']/a")
     WebElement creatorName;
-    @FindBy(xpath="//li[@class='icon header-user-profile']")
+    @FindBy(xpath = "//li[@class='icon header-user-profile']")
     WebElement accountIcon;
+    @FindBy(xpath = "//td[@class='sorting_1']")
+    WebElement categoryItem;
+    @FindBy(xpath = "//div[@class='row-options']")
+    WebElement rowOptions;
+    @FindBy(xpath = "//div[@class='row-options']//a[1]")
+    WebElement viewOption;
+    public  void clickViewOption(){
+        viewOption.click();
+    }
+    @FindBy(xpath = "//*[@id=\"expense\"]/div/div")
+    WebElement detailPanel;
+    @FindBy(xpath = "//i[@class='fa fa-angle-double-right']")
+    WebElement rightToggle;
+    @FindBy(xpath = "//i[@class='fa fa-angle-double-left']")
+    WebElement leftToggle;
+    public void verifyLefttoggleOpenNewPanel(){
+        leftToggle.click();
+        Assert.assertTrue(detailPanel.isDisplayed());
+    }
+    public void verifyAfterToggleNewPanelHide(){
+        rightToggle.click();
+        Assert.assertFalse(detailPanel.isDisplayed());
+    }
+    public void verifyNewPanelIsDisplayed(){
+        Assert.assertTrue(detailPanel.isDisplayed());
+    }
+    public void hoverOverCategoryItem() throws InterruptedException {
+       actions.moveToElement(categoryItem).perform();
+       Thread.sleep(800);
+    }
+    public void verifyRowOptions(String rowOption){
+        Assert.assertEquals(BrowserUtils.getText(rowOptions), rowOption);
+    }
 
     public void validatePageTitle(WebDriver driver, String expectedTitle) {
         Assert.assertEquals(driver.getTitle(), expectedTitle);
@@ -58,7 +95,7 @@ public class ExpensesPage {
         recordExpenseButton.click();
     }
 
-    public void recordExpense(WebDriver driver,String nameExpense, String noteExpense, String category,
+    public void recordExpense(WebDriver driver, String nameExpense, String noteExpense, String category,
                               String value, String customerName, String projectName, String paymentMode) throws InterruptedException {
         expenseName.sendKeys(nameExpense);
         expenseNote.sendKeys(noteExpense);
@@ -69,7 +106,7 @@ public class ExpensesPage {
         customerSearchBar.sendKeys(customerName);
         customerSelected.click();
         Thread.sleep(1000);
-        BrowserUtils.scrollWithJS(driver,project);
+        BrowserUtils.scrollWithJS(driver, project);
         project.click();
         Thread.sleep(2000);
         String str = projectName.split(" ")[2];
@@ -78,16 +115,20 @@ public class ExpensesPage {
         projectSelected.click();
         BrowserUtils.selectBy(this.paymentMode, paymentMode, "text");
     }
-    public void save(){
+
+    public void save() {
         save.click();
     }
-    public void validateReceiptNote(String expectedNote){
-        Assert.assertEquals(BrowserUtils.getText(noteReceipt),expectedNote);
+
+    public void validateReceiptNote(String expectedNote) {
+        Assert.assertEquals(BrowserUtils.getText(noteReceipt), expectedNote);
     }
-    public void validateCreatorname(WebDriver driver){
-        Actions actions=new Actions(driver);
+
+    public void validateCreatorname(WebDriver driver) {
+        Actions actions = new Actions(driver);
         actions.moveToElement(accountIcon).perform();
-        Assert.assertEquals(accountIcon.getAttribute("data-original-title"),BrowserUtils.getText(creatorName));
+        Assert.assertEquals(accountIcon.getAttribute("data-original-title"), BrowserUtils.getText(creatorName));
     }
+
 
 }
