@@ -1,4 +1,5 @@
 package stepdefinitions.apisteps;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -6,7 +7,11 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import utils.ConfigReader;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
 public class PerfexApiSteps {
@@ -51,6 +56,21 @@ public class PerfexApiSteps {
         List<String> names=response.jsonPath().getList(keyName);
 
     }
+    @Then("verify response {string} has size {string}")
+    public void verify_response_has_size(String items, String expectedSize) {
+        List<String> allItems= response.jsonPath().getList(items);
+        String actualSize=String.valueOf(allItems.size());
+        System.out.println(actualSize);
+        Assert.assertEquals(actualSize,expectedSize);
+    }
+    @Then("verify proposal details")
+    public void verify_response(DataTable dataTable) {
+       Map<String,String> data = dataTable.asMap();
+       for(Map.Entry<String,String> entry: data.entrySet())
+           Assert.assertEquals(response.jsonPath().getString(entry.getKey()),entry.getValue());
+    }
+
+
 
     @Then("verify response {string} contains {string}")
     public void verify_response_contains(String jsonPath, String expectedName) {
