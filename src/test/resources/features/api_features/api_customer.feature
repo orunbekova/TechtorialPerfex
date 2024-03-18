@@ -10,14 +10,6 @@ Feature: Customer API Validation for successful response
     * verify api response is ordered by "company"
 
 
-  Scenario: Verify Item List
-    Given I have base url "https://techtorialperfex.com/perfexcrm/api" and endpoint "/items/search/"
-    When the user send the "GET" request
-    Then verify status code 200
-    * verify number of values 3
-    * verify response "[1].name" is "(10.00) Ethernet Cable"
-
-
   Scenario: Verify Proposal total amount
     Given I have base url "https://techtorialperfex.com/perfexcrm/api" and endpoint "/proposals/search/Chicago"
     When the user send the "GET" request
@@ -49,5 +41,15 @@ Feature: Customer API Validation for successful response
 
 
 
+
+
+
+    Scenario: Verifying Item List
+      Given I have base url "https://techtorialperfex.com/perfexcrm/api" and endpoint "/items/search/"
+      When the user send the "GET" request
+      Then verify status code 200
+      * verify number of values 3
+      * verify response "[1].id" is "2"
+      * verify response "[1].name" contains "Ethernet Cable"
 
 
