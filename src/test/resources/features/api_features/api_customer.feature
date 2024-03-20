@@ -53,3 +53,12 @@ Feature: Customer API Validation for successful response
       * verify response "[1].name" contains "Ethernet Cable"
 
 
+      Scenario: Verifying Search and item info
+        Given I have base url "https://techtorialperfex.com/perfexcrm/api" and endpoint "/items/search/Ethernet"
+        When the user send the "GET" request
+        Then verify status code 200
+        * verify response "[0].id" is "2"
+        * verify response "[0].rate" contains "10.00"
+
+
+
