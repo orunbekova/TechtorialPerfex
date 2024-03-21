@@ -1,7 +1,6 @@
-package stepdefinitions;
+package stepdefinitions.UI;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -10,8 +9,7 @@ import pages.customerPages.CustomerListOfProposalsPage;
 import pages.customerPages.CustomerMainPage;
 import pages.customerPages.CustomerProposalPage;
 import pages.customerPages.CustomerSignaturePage;
-import utils.BrowserUtils;
-import utils.ConfigReader;
+import stepdefinitions.UI.LoginSteps;
 import utils.DataHolder;
 import utils.DriverHelper;
 
